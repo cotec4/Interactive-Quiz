@@ -1,14 +1,14 @@
-// Main things to work on: Timer, Initials / Submit Button & High Scores HTML
+// Main things to work on: High Scores HTML and rankings
 var question = document.getElementById("question");
 var responses = document.querySelector(".responses");
 var result = document.getElementById("result");
 var startQuiz = document.getElementById("start-button");
 var quizBody = document.getElementById("quiz-body");
 var introBody = document.getElementById("intro-body");
-var secs = document.getElementById("seconds");
+var seconds = document.getElementById("seconds");
 var i = 0;
 var score = 0;
-secs.textContent = 75;
+var secs = 76;
 
 var resultArray = ["Correct!", "Wrong!"];
 var answer0 = document.getElementById("answer0");
@@ -69,24 +69,31 @@ var questions = [
     }
 ]
 
-function countdown() {
-    secs = parseInt(secs.textContent);
-    console.log(secs);
-    if(secs > 1) {
-        setInterval(function(){secs-1;},1000)
-    }
-    else {
+var interval;
 
-    }
+function countdown() {
+    interval = setInterval(function () {
+        if (secs === 0) {
+            clearInterval(interval);
+            console.log(secs);
+            stopQuiz();
+            // Stop quiz and send to input initials and submit
+        }
+        secs--;
+        seconds.textContent = secs;
+    }, 1000)
 }
 
-startQuiz.addEventListener("click", buildQuiz);
-startQuiz.addEventListener("click", countdown);
+$(startQuiz).on("click", function() {
+    buildQuiz;
+    countdown();
+})
 
 function buildQuiz() {
     if (quizBody.style.display === "none") {
         quizBody.setAttribute("style", "display: inline-block");
     }
+    i = 0;
     introBody.setAttribute("style", "display: none");
     $(question).text(questions[i].Question);
     $(answer0).text(questions[i].answers.response1);
@@ -109,15 +116,10 @@ function buildQuiz() {
 }
 
 function setNextQuestion() {
-    console.log(i);
-    console.log(questions.length);
-    console.log(questions.length < i);
     if (questions.length <= i) {
-        setTimeout(function () {
-            quizBody.setAttribute("style", "display: none");
-            result.setAttribute("style", "display: none");
-        }, 750);
-        // Go to Intials and Submit page
+        stopQuiz();
+        console.log(secs);
+        clearInterval(interval);
     }
     else {
         // Go to next question
@@ -127,4 +129,36 @@ function setNextQuestion() {
         $(answer2).text(questions[i].answers.response3);
         $(answer3).text(questions[i].answers.response4);
     }
+}
+
+function stopQuiz() {
+    score = score + secs;
+    $("#result").empty();
+    $("#quiz-body").empty();
+    $("#result").text("Your Score Is: " + score);
+    $("<h5>").text("Finished! Congrats on learning more about Atlanta!").appendTo("#quiz-body");
+    var initialsInput = $("<input>").attr("type", "text").attr("placeholder", "Please insert your initials");
+    var submtiBtn = $("<button>").attr("type", "submit").text("Submit").attr("id","submitBtn");
+    $("#quiz-body").append(initialsInput, submtiBtn);
+    $(submtiBtn).on("click", function () {
+        localStorage.setItem($("input").val(), score);
+        window.location.href = "./leaderboard.html";
+    })
+}
+
+var array = Object.keys(localStorage);
+for (var i = 0; i < array.length; i++) {
+    localStorage[array[i]];
+    // provides the initials
+    console.log(array[i]);
+    // provides the value
+    console.log(localStorage[array[i]]);
+    console.log(i);
+    $("<div>").attr("id","standings").appendTo("div");
+    $("<textarea>").attr("id","firstPlace").text("1." + " " + array[i] + " " + localStorage[array[i]]).appendTo("div");
+    // Store all scores in local storage and work on HTML to show top scores (sorting from best to worst score)
+    var goBackBtn = $("<button>").attr("id", "goBackBtn").text("Go Back");
+    var clearHighScores = $("<button>").attr("id","clearHighScores").text("Clear Highscores");
+    var buttons = $("<div>");
+    $(buttons).append(goBackBtn, clearHighScores);
 }
