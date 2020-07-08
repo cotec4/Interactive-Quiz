@@ -6,7 +6,8 @@ var quizBody = document.getElementById("quiz-body");
 var introBody = document.getElementById("intro-body");
 var secs = document.getElementById("seconds");
 var i = 0;
-secs.value = 75;
+var score = 0;
+secs.textContent = 75;
 
 var resultArray = ["Correct!", "Wrong!"];
 var answer0 = document.getElementById("answer0");
@@ -43,7 +44,7 @@ var questions = [
             response3: "3. Brian Kemp",
             response4: "4. J. Edgar Thompson",
         },
-        Answer: "2. Keisha Lance Bottoms",
+        correctAnswer: "2. Keisha Lance Bottoms",
     },
     {
         Question: "What team won the most recent Major Sport Championship for Atlanta?",
@@ -68,11 +69,14 @@ var questions = [
 ]
 
 function countdown() {
-    setTimeout('Decrement()', 60);
-}
+    secs = parseInt(secs.textContent);
+    console.log(secs);
+    if(secs > 1) {
+        setInterval(function(){secs-1;},1000)
+    }
+    else {
 
-function Decrement() {
-    secs--;
+    }
 }
 
 startQuiz.addEventListener("click", buildQuiz);
@@ -83,21 +87,43 @@ function buildQuiz() {
         quizBody.setAttribute("style", "display: inline-block");
     }
     introBody.setAttribute("style", "display: none");
-    question.textContent = questions[i].Question;
-    answer0.textContent = questions[i].answers.response1;
-    answer1.textContent = questions[i].answers.response2;
-    answer2.textContent = questions[i].answers.response3;
-    answer3.textContent = questions[i].answers.response4;
-    // potentially have this as what you can use and have checkanswer() called at end of buildquiz()
-    // i++;
+    $(question).text(questions[i].Question);
+    $(answer0).text(questions[i].answers.response1);
+    $(answer1).text(questions[i].answers.response2);
+    $(answer2).text(questions[i].answers.response3);
+    $(answer3).text(questions[i].answers.response4);
+    $(".responses").on("click", function () {
+        if (this.textContent === questions[i].correctAnswer) {
+            result.textContent = "Correct!";
+            score++;
+            i++;
+        }
+        else {
+            result.textContent = "Wrong!";
+            score--;
+            i++;
+        }
+        setNextQuestion();
+    });
 }
 
-function checkAnswer() {
-    if(answer === questions[i].correctAnswer) {
-
+function setNextQuestion() {
+    console.log(i);
+    console.log(questions.length);
+    console.log(questions.length < i);
+    if (questions.length <= i) {
+        setTimeout(function () {
+            quizBody.setAttribute("style", "display: none");
+            result.setAttribute("style", "display: none");
+        }, 750);
+        // Go to Intials and Submit page
     }
     else {
-        
+        // Go to next question
+        $(question).text(questions[i].Question);
+        $(answer0).text(questions[i].answers.response1);
+        $(answer1).text(questions[i].answers.response2);
+        $(answer2).text(questions[i].answers.response3);
+        $(answer3).text(questions[i].answers.response4);
     }
-    // i++;
 }
