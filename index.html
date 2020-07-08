@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- reset CSS stylesheet -->
+    <link rel="stylesheet" href="./reset.css" type="text/css">
+    <!-- Bootstrap CSS stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css">
+    <!-- Font Awesome Style Sheet -->
+    <link rel="stylesheet" href="" type="text/css">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <title>Quiz</title>
+</head>
+<div class="row">
+    <div class="col">
+        <h4> <a href="./leaderboard.html">View Highscores</a> </h4>
+    </div>
+    <div class="col" id="timer">
+        <h5> Time: <input id="seconds" type="text"> </input> </h5>
+    </div>
+</div>
+
+<body>
+    <div class="card text-center">
+        <div class="card-body" id="intro-body">
+            <h5 class="card-title">This is a quiz about Atlanta</h5>
+            <p class="card-text">
+                <button id="start-button" class="btn btn-primary">Start Quiz</button>
+            </p>
+        </div>
+        <div class="card-body" id="quiz-body" style="display: none;">
+            <h5 class="card-title" id="question"></h5>
+            <p class="card-text">
+                <button id="answer0" class="btn btn-primary responses"></button>
+            </p>
+            <p class="card-text">
+                <button id="answer1" class="btn btn-primary responses"></button>
+            </p>
+            <p class="card-text">
+                <button id="answer2" class="btn btn-primary responses"></button>
+            </p>
+            <p class="card-text">
+                <button id="answer3" class="btn btn-primary responses"></button>
+            </p>
+        </div>
+        <br>
+        <div id="result" class="hide"></div>
+    </div>
+    <!-- JQuery Script Link -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./script.js"></script>
+
+
+</body>
+
+</html>

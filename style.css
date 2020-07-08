@@ -1,0 +1,15 @@
+h4 a {
+    color: purple;
+}
+.responses {
+    background-color: purple;
+    border: none;
+    text-align: left;
+}
+#quiz-body p {
+    margin-bottom: 2px;
+    margin-right: 20%;
+}
+#timer {
+    text-align: right;
+}
