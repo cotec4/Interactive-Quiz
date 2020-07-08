@@ -5,6 +5,7 @@ var startQuiz = document.getElementById("start-button");
 var quizBody = document.getElementById("quiz-body");
 var introBody = document.getElementById("intro-body");
 var secs = document.getElementById("seconds");
+var i = 0;
 secs.value = 75;
 
 var resultArray = ["Correct!", "Wrong!"];
@@ -17,52 +18,52 @@ var questions = [
     {
         Question: "What year did the Georgia General Assembly vote to build the Western and Atlantic Railroad?",
         answers: {
-            1.: "1808",
-            2.: "1824",
-            3.: "1836",
-            4.: "1854",
+            response1: "1. 1808",
+            response2: "2. 1824",
+            response3: "3. 1836",
+            response4: "4. 1854",
         },
-        correctAnswer: "3.",
+        correctAnswer: "3. 1836",
     },
     {
         Question: "What year did Atlanta host the Summer Olympics?",
         answers: {
-            1.: "1988",
-            2.: "1990",
-            3.: "1992",
-            4.: "1996",
+            response1: "1. 1988",
+            response2: "2. 1990",
+            response3: "3. 1992",
+            response4: "4. 1996",
         },
-        correctAnswer: "4.",
+        correctAnswer: "4. 1996",
     },
     {
         Question: "Who is the current mayor of Atlanta?",
         answers: {
-            1.: "Maynard Jackson",
-            2.: "Keisha Lance Bottoms",
-            3.: "Brian Kemp",
-            4.: "J. Edgar Thompson",
+            response1: "1. Maynard Jackson",
+            response2: "2. Keisha Lance Bottoms",
+            response3: "3. Brian Kemp",
+            response4: "4. J. Edgar Thompson",
         },
-        Answer: "2.",
+        Answer: "2. Keisha Lance Bottoms",
     },
     {
         Question: "What team won the most recent Major Sport Championship for Atlanta?",
         answers: {
-            1.: "Braves",
-            2.: "Falcons",
-            3.: "Hawks",
-            4.: "Thrashers",
+            response1: "1. Braves",
+            response2: "2. Falcons",
+            response3: "3. Hawks",
+            response4: "4. Thrashers",
         },
-        correctAnswer: "1.",
+        correctAnswer: "1. Braves",
     },
     {
         Question: "How many streets have the name Peachtree in it in Atlanta?",
         answers: {
-            1.: "28",
-            2.: "55",
-            3.: "61",
-            4.: "102",
+            response1: "1. 28",
+            response2: "2. 55",
+            response3: "3. 61",
+            response4: "4. 102",
         },
-        correctAnswer: "2.",
+        correctAnswer: "2. 55",
     }
 ]
 
@@ -82,52 +83,21 @@ function buildQuiz() {
         quizBody.setAttribute("style", "display: inline-block");
     }
     introBody.setAttribute("style", "display: none");
-    for (var i = 0; i < questions.length; i++) {
-        question.textContent = questions[i].Question;
-        answer0.textContent = questions[i].answers[1];
-        answer1.textContent = questions[i].answers[2];
-        answer2.textContent = questions[i].answers[3];
-        answer3.textContent = questions[i].answers[4];
-    }
+    question.textContent = questions[i].Question;
+    answer0.textContent = questions[i].answers.response1;
+    answer1.textContent = questions[i].answers.response2;
+    answer2.textContent = questions[i].answers.response3;
+    answer3.textContent = questions[i].answers.response4;
+    // potentially have this as what you can use and have checkanswer() called at end of buildquiz()
+    // i++;
 }
 
+function checkAnswer() {
+    if(answer === questions[i].correctAnswer) {
 
-// buildQuiz();
-
-// function WriteQuestions(Number) {
-//     if (Number = 1) {
-//         question.textContent = question1.Question;
-//         answer0.textContent = question1.Option1;
-//         answer1.textContent = question1.Option2;
-//         answer2.textContent = question1.Option3;
-//         answer3.textContent = question1.Option4;
-//     }
-//     else if (Number = 2) {
-//         question.textContent = question2.Question;
-//         answer0.textContent = question2.Option1;
-//         answer1.textContent = question2.Option2;
-//         answer2.textContent = question2.Option3;
-//         answer3.textContent = question2.Option4;
-//     }
-//     else if (Number = 3) {
-//         question.textContent = question3.Question;
-//         answer0.textContent = question3.Option1;
-//         answer1.textContent = question3.Option2;
-//         answer2.textContent = question3.Option3;
-//         answer3.textContent = question3.Option4;
-//     }
-//     else if (Number = 4) {
-//         question.textContent = question4.Question;
-//         answer0.textContent = question4.Option1;
-//         answer1.textContent = question4.Option2;
-//         answer2.textContent = question4.Option3;
-//         answer3.textContent = question4.Option4;
-//     }
-//     else if (Number = 5) {
-//         question.textContent = question5.Question;
-//         answer0.textContent = question5.Option1;
-//         answer1.textContent = question5.Option2;
-//         answer2.textContent = question5.Option3;
-//         answer3.textContent = question5.Option4;
-//     }
-// }
+    }
+    else {
+        
+    }
+    // i++;
+}
