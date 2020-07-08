@@ -1,3 +1,4 @@
+// Main things to work on: Timer, Initials / Submit Button & High Scores HTML
 var question = document.getElementById("question");
 var responses = document.querySelector(".responses");
 var result = document.getElementById("result");
