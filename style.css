@@ -32,14 +32,15 @@ button {
     margin-top: 150px;
     padding-bottom: 15px;
 }
-#standings {
+.highScores {
+    background-color:rgba(128, 0, 128, 0.2);
     text-align: center;
-}
-#firstPlace {
-    background-color: rgba(128, 0, 128, 0.2);
-    text-align: center;
-    width: 500px;
-    height: 35px;
+    width: auto;
+    margin-left: 45%;
+    margin-right: 45%;
+    border-bottom-color: white;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
     resize: horizontal;
 }
 #buttons {
