@@ -42,3 +42,6 @@ button {
     height: 35px;
     resize: horizontal;
 }
+#buttons {
+    text-align: center;
+}
